@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airport Primary Care LLC | Dr. Shashikant A. Daya, MD | Atlanta, GA</title>
+<style>
+  :root {
+    --forest: #164b3b;
+    --forest-dark: #0d3126;
+    --forest-mid: #1f634e;
+    --forest-soft: #e8f1ed;
+    --primary: #0f4c81;
+    --primary-dark: #093256;
+    --lime-accent: #e6f58c;
+    --bg-hero: #eef3f0;
+    --bg-light: #f6f9f7;
+    --surface: #ffffff;
+    --text-main: #10201a;
+    --text-muted: #3d5049;
+    --border: #d2dfd9;
+    --shadow-sm: 0 4px 14px rgba(16, 32, 26, 0.05);
+    --shadow-md: 0 16px 38px rgba(16, 32, 26, 0.09);
+    --shadow-lg: 0 24px 54px rgba(16, 32, 26, 0.14);
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+    background-color: var(--surface);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Cinematic Scroll Reveal Classes */
+  .reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.85s var(--ease-cinematic), transform 0.85s var(--ease-cinematic);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* 1. Top Announcement Bar */
+  .top-bar {
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 0.95rem;
+    padding: 11px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    line-height: 1.45;
+    z-index: 1002;
+  }
+  .top-bar-inner {
+    max-width: 1180px;
+    padding-right: 32px;
+  }
+  .top-bar-close {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.45rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    opacity: 0.85;
+  }
+  .top-bar-close:hover {
+    opacity: 1;
+  }
+
+  /* 2. Sticky Glassmorphism Header + Scroll Progress Hairline */
+  header {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 14px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: box-shadow 0.3s ease, padding 0.3s ease;
+  }
+  header.scrolled {
+    box-shadow: 0 8px 28px rgba(16, 32, 26, 0.08);
+    padding: 11px 5%;
+  }
+  .scroll-progress {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--forest) 0%, #3b9c7d 60%, #b7d94a 100%);
+    transition: width 0.08s linear;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text-main);
+  }
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--forest);
+    color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.65rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(22, 75, 59, 0.25);
+  }
+  .logo-text h1 {
+    font-size: 1.28rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-main);
+  }
+  .logo-text p {
+    font-size: 0.84rem;
+    color: var(--forest);
+    font-weight: 600;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 1.02rem;
+    padding: 6px 4px;
+    transition: color 0.2s;
+  }
+  nav a:hover {
+    color: var(--forest);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-phone {
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.02rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #eff6ff;
+    transition: background 0.2s;
+  }
+  .header-phone:hover {
+    background: #dbeafe;
+  }
+
+  /* Universal Accessible Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 1.05rem;
+    min-height: 52px;
+    transition: transform 0.25s var(--ease-cinematic), background 0.2s, box-shadow 0.25s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-forest {
+    background: var(--forest);
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 15px 32px;
+    font-size: 1.08rem;
+    box-shadow: 0 8px 20px rgba(22, 75, 59, 0.22);
+  }
+  .btn-forest:hover {
+    background: var(--forest-dark);
+    box-shadow: 0 12px 26px rgba(22, 75, 59, 0.3);
+  }
+  .btn-lime {
+    background: var(--lime-accent);
+    color: var(--text-main);
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 1.08rem;
+  }
+  .btn-lime:hover {
+    background: #dced74;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+  }
+  .btn-outline {
+    background: #ffffff;
+    color: var(--forest);
+    border: 2px solid var(--forest);
+  }
+  .btn-outline:hover {
+    background: var(--forest);
+    color: #ffffff;
+  }
+
+  /* 3. Full-Page Cinematic Hero Section with Doctor Portrait + Centered Trust Strip */
+  .hero-full {
+    position: relative;
+    min-height: calc(100vh - 115px);
+    background: radial-gradient(circle at 80% 45%, #dbe9e1 0%, #eef3f0 55%, #f6f9f7 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 46px 5% 38px 5%;
+    overflow: hidden;
+  }
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+  }
+  .hero-readability-shield {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(246, 249, 247, 0.96) 0%,
+      rgba(246, 249, 247, 0.88) 54%,
+      rgba(246, 249, 247, 0.35) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Two-Column Hero Top: Left Copy + Right Doctor Trust Card */
+  .hero-top-grid {
+    position: relative;
+    z-index: 3;
+    max-width: 1260px;
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: 44px;
+    align-items: center;
+    padding: 10px 0 32px 0;
+    will-change: transform, opacity;
+  }
+
+  /* Hero Entrance Choreography */
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-anim-1 { animation: heroFadeUp 0.8s var(--ease-cinematic) 0.05s both; }
+  .hero-anim-2 { animation: heroFadeUp 0.85s var(--ease-cinematic) 0.16s both; }
+  .hero-anim-3 { animation: heroFadeUp 0.85s var(--ease-cinematic) 0.28s both; }
+  .hero-anim-4 { animation: heroFadeUp 0.85s var(--ease-cinematic) 0.38s both; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: rgba(22, 75, 59, 0.1);
+    padding: 7px 14px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+  }
+  .hero-left h2 {
+    font-size: clamp(2.4rem, 4.3vw, 3.55rem);
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.13;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 1.35vw, 1.24rem);
+    color: var(--text-muted);
+    line-height: 1.62;
+    margin-bottom: 26px;
+    max-width: 590px;
+  }
+
+  .hero-essentials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 1rem;
+    color: var(--text-main);
+    margin-bottom: 28px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+    max-width: 520px;
+  }
+  .hero-essentials span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+  }
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #16a34a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.18);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .hero-btn-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* Right-Side Doctor Portrait Card */
+  .hero-doctor-card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: var(--shadow-lg);
+    max-width: 420px;
+    margin-left: auto;
+    width: 100%;
+  }
+  .doctor-photo-frame {
+    position: relative;
+    width: 100%;
+    height: 330px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #1b5946 0%, #0f4c81 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+  }
+  .doctor-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .doctor-portrait-illustration {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 24px;
+    background: radial-gradient(circle at 50% 30%, #2a755d 0%, #123c30 100%);
+    position: relative;
+  }
+  .doctor-verified-pill {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--forest);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .doctor-card-caption {
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .doctor-card-caption h3 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    line-height: 1.25;
+  }
+  .doctor-card-caption p {
+    font-size: 0.9rem;
+    color: var(--forest);
+    font-weight: 600;
+  }
+  .doctor-lang-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: var(--forest-soft);
+    color: var(--forest);
+    padding: 6px 11px;
+    border-radius: 8px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* Centered Bottom Trust Heading & Centered Rounded Service Buttons */
+  .hero-bottom-centered {
+    position: relative;
+    z-index: 3;
+    max-width: 1260px;
+    width: 100%;
+    margin: 0 auto;
+    border-top: 1px solid rgba(22, 75, 59, 0.18);
+    padding-top: 26px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .trust-heading-large {
+    font-size: clamp(1.28rem, 2.1vw, 1.62rem);
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .hero-pills-centered {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    max-width: 1050px;
+  }
+  .service-pill {
+    background: #ffffff;
+    color: var(--text-main);
+    border: 1.5px solid rgba(22, 75, 59, 0.22);
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: all 0.25s var(--ease-cinematic);
+  }
+  .service-pill:hover {
+    background: var(--forest);
+    color: #ffffff;
+    border-color: var(--forest);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* 4. Trusted Numbers Strip with Live Count-Up */
+  .trusted-bar {
+    background: #ffffff;
+    padding: 52px 5%;
+    border-bottom: 1px solid var(--border);
+  }
+  .trusted-grid {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  .trusted-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 26px 22px;
+    transition: transform 0.3s var(--ease-cinematic), box-shadow 0.3s;
+  }
+  .trusted-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .trusted-num {
+    font-size: 2.15rem;
+    font-weight: 800;
+    color: var(--forest);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .trusted-title {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+  }
+  .trusted-sub {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* Standard Section Layout */
+  section {
+    padding: 78px 5%;
+  }
+  .section-alt {
+    background-color: var(--bg-light);
+  }
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .section-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 48px auto;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--forest);
+    background: var(--forest-soft);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  .section-header h2 {
+    font-size: clamp(1.9rem, 3.1vw, 2.45rem);
+    color: var(--text-main);
+    margin-bottom: 12px;
+    line-height: 1.18;
+  }
+  .section-header p {
+    font-size: 1.08rem;
+    color: var(--text-muted);
+  }
+
+  /* 5. 3-Step Patient Journey */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .journey-step {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .step-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .journey-step h3 {
+    font-size: 1.24rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+  }
+  .journey-step p {
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  /* 6. Revenue-Focused Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 26px;
+  }
+  .service-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s var(--ease-cinematic), box-shadow 0.3s, border-color 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--forest);
+  }
+  .service-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .service-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: var(--forest-soft);
+    color: var(--forest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.55rem;
+  }
+  .service-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #eff6ff;
+    color: var(--primary);
+  }
+  .service-badge.popular {
+    background: var(--lime-accent);
+    color: var(--text-main);
+  }
+  .service-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .service-bullets {
+    list-style: none;
+    margin-bottom: 22px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+  }
+  .service-bullets li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .service-bullets li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--forest);
+    font-weight: 700;
+  }
+  .service-cta {
+    width: 100%;
+    padding: 13px 18px;
+    border-radius: 10px;
+    background: var(--bg-light);
+    color: var(--forest);
+    border: 1.5px solid var(--border);
+    font-weight: 700;
+    font-size: 0.98rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .service-cta:hover {
+    background: var(--forest);
+    color: #ffffff;
+    border-color: var(--forest);
+  }
+
+  /* 7. Interactive 15-Second Visit Triage Tool */
+  .triage-panel {
+    background: #ffffff;
+    border: 2px solid var(--forest);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    max-width: 880px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+  }
+  .triage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .triage-btn {
+    padding: 18px;
+    border: 1.5px solid var(--border);
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+    text-align: left;
+    cursor: pointer;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .triage-btn span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .triage-btn:hover, .triage-btn.active {
+    border-color: var(--forest);
+    background: var(--forest-soft);
+  }
+  .triage-result {
+    margin-top: 22px;
+    padding: 22px;
+    border-radius: var(--radius-md);
+    background: var(--forest-soft);
+    border-left: 5px solid var(--forest);
+    display: none;
+  }
+
+  /* 8. Cinematic Dark-Forest Physician Spotlight */
+  .doctor-cinematic {
+    background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest) 100%);
+    color: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: 46px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 42px;
+    align-items: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .doctor-badge-box {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 36px 20px;
+    text-align: center;
+  }
+  .doctor-initials {
+    font-size: 3.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 12px;
+    color: var(--lime-accent);
+  }
+  .doctor-info h3 {
+    font-size: 1.9rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+  .doctor-role {
+    color: var(--lime-accent);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+  }
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .cred-item strong {
+    display: block;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--lime-accent);
+    margin-bottom: 3px;
+  }
+
+  /* 9. Patient Stories */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .story-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .story-stars {
+    color: #eab308;
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .story-quote {
+    font-size: 1.02rem;
+    color: var(--text-main);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+  .story-author {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  /* 10. Insurance & 3-Step Booking Hub */
+  .conversion-split {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .ins-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 26px 0;
+  }
+  .ins-pill {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 0.98rem;
+  }
+  .info-box {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 18px;
+  }
+  .info-box h4 {
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .booking-card {
+    background: #ffffff;
+    border: 2px solid var(--forest);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: var(--shadow-lg);
+  }
+  .booking-card h3 {
+    font-size: 1.65rem;
+    color: var(--text-main);
+    margin-bottom: 6px;
+  }
+  .booking-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  .hipaa-banner {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+  .form-group {
+    margin-bottom: 18px;
+  }
+  .form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    color: var(--text-main);
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    background: #ffffff;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--forest);
+  }
+  .booking-success {
+    display: none;
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: 10px;
+    background: var(--forest-soft);
+    border: 1.5px solid var(--forest);
+    color: var(--text-main);
+    font-size: 1.02rem;
+  }
+
+  /* 11. FAQ Accordion */
+  .faq-list {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-question:hover {
+    background: var(--bg-light);
+  }
+  .faq-icon {
+    font-size: 1.4rem;
+    color: var(--forest);
+    transition: transform 0.25s ease;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s var(--ease-cinematic), padding 0.35s ease;
+    padding: 0 24px;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 240px;
+    padding: 0 24px 20px 24px;
+  }
+
+  /* 12. Patient Checklists */
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .guide-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 28px;
+  }
+  .guide-tag {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--forest);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .guide-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .guide-link {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  /* Large CTA Banner Block */
+  .cta-banner {
+    background-color: var(--forest);
+    color: #ffffff;
+    padding: 70px 5%;
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+    margin-bottom: 16px;
+    color: #ffffff;
+  }
+  .cta-banner p {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto 32px auto;
+    opacity: 0.9;
+  }
+
+  /* Footer & Mobile Bar */
+  footer {
+    background: #0f1c18;
+    color: #cbd5e1;
+    padding: 60px 5% 32px 5%;
+  }
+  .footer-grid {
+    max-width: 1240px;
+    margin: 0 auto 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+  }
+  footer h4 {
+    color: #ffffff;
+    margin-bottom: 14px;
+    font-size: 1.08rem;
+  }
+  footer ul {
+    list-style: none;
+  }
+  footer li {
+    margin-bottom: 9px;
+    font-size: 0.96rem;
+  }
+  footer a {
+    color: #a7b8b2;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+  .footer-bottom {
+    max-width: 1240px;
+    margin: 0 auto;
+    border-top: 1px solid #243831;
+    padding-top: 22px;
+    font-size: 0.88rem;
+    color: #94a3b8;
+    text-align: center;
+  }
+
+  .mobile-sticky-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid var(--border);
+    padding: 10px 14px;
+    gap: 10px;
+    z-index: 1500;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  }
+  .mobile-sticky-bar a {
+    flex: 1;
+    text-align: center;
+    padding: 13px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    background: rgba(15, 28, 24, 0.72);
+    overflow-y: auto;
+    padding: 40px 16px;
+  }
+  .modal-content {
+    background: #ffffff;
+    margin: auto;
+    padding: 36px;
+    border-radius: var(--radius-lg);
+    max-width: 760px;
+    position: relative;
+  }
+  .close-modal {
+    position: absolute;
+    right: 22px;
+    top: 16px;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .modal-body h3 { color: var(--text-main); margin-bottom: 12px; font-size: 1.45rem; }
+  .modal-body h4 { color: var(--forest); margin: 16px 0 6px 0; }
+  .modal-body p, .modal-body ul { margin-bottom: 12px; font-size: 1rem; }
+  .modal-body ul { padding-left: 20px; }
+
+  @media (max-width: 1050px) {
+    .hero-top-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .hero-doctor-card {
+      margin: 0 auto;
+      max-width: 460px;
+    }
+    .trusted-grid { grid-template-columns: repeat(2, 1fr); }
+    .conversion-split, .doctor-cinematic, .journey-grid, .stories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 820px) {
+    nav, .header-phone { display: none; }
+    .hero-full { min-height: auto; padding: 36px 5% 36px 5%; }
+    .hero-readability-shield { background: rgba(246, 249, 247, 0.94); }
+    .triage-grid { grid-template-columns: 1fr; }
+    .doctor-cinematic { padding: 30px 24px; }
+    .mobile-sticky-bar { display: flex; }
+    body { padding-bottom: 68px; }
+  }
+
+  @media (max-width: 540px) {
+    .trusted-grid { grid-template-columns: 1fr; }
+    .hero-btn-row .btn { width: 100%; }
+    .doctor-photo-frame { height: 280px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 1. Top Announcement Bar -->
+  <div class="top-bar" id="topBar">
+    <div class="top-bar-inner">
+      Same-day appointments available Mon–Thu (10:00 AM – 5:00 PM) at <strong>3305 Bobby Brown Pkwy, Atlanta</strong>. On-site digital X-rays &amp; labs available. <strong>Emergency? Call 911.</strong>
+      <a href="#appointments" style="color:var(--lime-accent); font-weight:bold; margin-left:12px; text-decoration:underline; font-size:1.05rem;">Book Now</a>
+    </div>
+    <button class="top-bar-close" aria-label="Dismiss notice" onclick="document.getElementById('topBar').style.display='none'">&times;</button>
+  </div>
+
+  <!-- 2. Sticky Glass Header + Scroll Progress -->
+  <header id="mainHeader">
+    <a href="#home" class="logo">
+      <div class="logo-icon">+</div>
+      <div class="logo-text">
+        <h1>Airport Primary Care</h1>
+        <p>Dr. Shashikant A. Daya, MD &bull; Atlanta</p>
+      </div>
+    </a>
+
+    <nav aria-label="Main Menu">
+      <ul>
+        <li><a href="#journey">How It Works</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#triage">Visit Helper</a></li>
+        <li><a href="#doctor">Our Doctor</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="tel:4048068181" class="header-phone">(404) 806-8181</a>
+      <a href="#appointments" class="btn btn-primary" style="padding: 11px 22px; min-height: 46px;">Book Visit</a>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+
+  <!-- 3. Full-Viewport Cinematic Hero Section -->
+  <section id="home" class="hero-full">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-readability-shield" aria-hidden="true"></div>
+
+    <!-- Top Two-Column Area: Left Patient Copy + Right Doctor Trust Card -->
+    <div class="hero-top-grid" id="heroContent">
+      <div class="hero-left">
+        <span class="hero-eyebrow hero-anim-1">Minutes from Hartsfield-Jackson Atlanta Airport</span>
+        <h2 class="hero-anim-2">Healthcare that starts with listening to you</h2>
+        <p class="hero-subtitle hero-anim-3">
+          Primary care, urgent care, in-house X-rays, and certified DOT &amp; USCIS immigration physicals in one convenient East Point clinic—with results explained in clear, everyday language.
+        </p>
+
+        <div class="hero-essentials hero-anim-4">
+          <span><i class="status-dot"></i> By Appointment Only (Mon–Thu, 10 AM – 5 PM)</span>
+          <span><i class="status-dot" style="background:#0f4c81; box-shadow:none;"></i> 3305 Bobby Brown Pkwy, Atlanta, GA</span>
+        </div>
+
+        <div class="hero-btn-row hero-anim-4">
+          <a href="#appointments" class="btn btn-forest">Book a visit</a>
+          <a href="#services" class="btn btn-lime">Explore services</a>
+        </div>
+      </div>
+
+      <!-- Right Side: Doctor Portrait Card to Build Immediate Patient Trust -->
+      <div class="hero-doctor-card hero-anim-3">
+        <div class="doctor-photo-frame">
+          <div class="doctor-portrait-illustration">
+            <span class="doctor-verified-pill">&#10003; Board-Trained MD &bull; 20+ Yrs</span>
+            <!-- Doctor image configured per request -->
+            <img
+              src="https://mdxvitals-res.cloudinary.com/private_images/h_150,w_150,c_fill,g_face,f_auto,dpr_auto/professionals/1749218/photo.jpg"
+              alt="Dr. Shashikant A. Daya, MD"
+              class="doctor-photo"
+              onerror="this.src='https://placehold.co/400x400/1b5946/ffffff?text=Dr.+Daya'"
+            />
+          </div>
+        </div>
+
+        <div class="doctor-card-caption">
+          <div>
+            <h3>Dr. Shashikant A. Daya, MD</h3>
+            <p>Family &amp; Internal Medicine</p>
+          </div>
+          <div class="doctor-lang-tag">
+            3 Languages<br><span style="font-weight:500; font-size:0.75rem;">English &bull; Hindi &bull; Gujrati</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Centered Trust Heading + Centered Rounded Service Buttons -->
+    <div class="hero-bottom-centered hero-anim-4">
+      <h3 class="trust-heading-large">
+        Trusted by Atlanta families, drivers &amp; travelers for 20+ years
+      </h3>
+
+      <div class="hero-pills-centered" aria-label="Quick Service Selection">
+        <button class="service-pill" onclick="selectServiceAndScroll('New Patient Primary Care')">Health Check-ups</button>
+        <button class="service-pill" onclick="selectServiceAndScroll('Same-Day Urgent Care')">In-House X-Ray &amp; Urgent Care</button>
+        <button class="service-pill" onclick="selectServiceAndScroll('DOT Physical Exam')">DOT Driver Physicals</button>
+        <button class="service-pill" onclick="selectServiceAndScroll('USCIS Immigration Medical Exam')">USCIS Green Card Exam</button>
+        <button class="service-pill" onclick="selectServiceAndScroll('Established Patient Follow-Up')">Diabetes &amp; Blood Pressure</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Trusted Numbers Bar with Animated Counters -->
+  <div class="trusted-bar" id="trustedBar">
+    <div class="trusted-grid">
+      <div class="trusted-card reveal">
+        <div class="trusted-num"><span class="count-up" data-target="20">0</span>+ Years</div>
+        <div class="trusted-title">Clinical Experience</div>
+        <div class="trusted-sub">Serving East Point, College Park &amp; Atlanta families.</div>
+      </div>
+      <div class="trusted-card reveal reveal-delay-1">
+        <div class="trusted-num">Same-Day</div>
+        <div class="trusted-title">In-House Labs &amp; X-Ray</div>
+        <div class="trusted-sub">On-site blood work, EKGs, and digital X-rays in one trip.</div>
+      </div>
+      <div class="trusted-card reveal reveal-delay-2">
+        <div class="trusted-num"><span class="count-up" data-target="100">0</span>%</div>
+        <div class="trusted-title">DOT &amp; USCIS Certified</div>
+        <div class="trusted-sub">Authorized FMCSA commercial driver &amp; Form I-693 exams.</div>
+      </div>
+      <div class="trusted-card reveal reveal-delay-3">
+        <div class="trusted-num"><span class="count-up" data-target="3">0</span> Languages</div>
+        <div class="trusted-title">Clear Communication</div>
+        <div class="trusted-sub">Care spoken in English, Hindi, Gujarati</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 3-Step Patient Journey -->
+  <section id="journey" class="section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Simple &amp; Stress-Free</span>
+        <h2>How Your Visit Works</h2>
+        <p>No confusing hospital runarounds. We designed our clinic so you get answers in a single visit.</p>
+      </div>
+
+      <div class="journey-grid">
+        <div class="journey-step reveal">
+          <div class="step-number">1</div>
+          <h3>Request Online</h3>
+          <p>Pick your visit type below in 30 seconds to request an appointment Monday through Thursday between 10:00 AM and 5:00 PM.</p>
+        </div>
+        <div class="journey-step reveal reveal-delay-1">
+          <div class="step-number">2</div>
+          <h3>Exam, Labs &amp; X-Ray in One Place</h3>
+          <p>See Dr. Daya and complete your blood work, EKG, or digital X-ray right on site—without driving across Atlanta to a separate lab.</p>
+        </div>
+        <div class="journey-step reveal reveal-delay-2">
+          <div class="step-number">3</div>
+          <h3>Clear Results &amp; Next Steps</h3>
+          <p>Leave with your results explained in plain English (or Hindi, Gujarati), plus any required prescriptions or certified forms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. High-Conversion Medical Services Grid -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">One Clinic Under One Roof</span>
+        <h2>Medical Services &amp; Certified Exams</h2>
+        <p>Select any service below to pre-fill your appointment request in one click.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon">&#9829;</div>
+              <span class="service-badge">Preventive Care</span>
+            </div>
+            <h3>Primary Care &amp; Annual Check-Ups</h3>
+            <p>Comprehensive wellness exams, school and sports physicals, vaccinations, and preventive screenings for teens, adults, and seniors.</p>
+            <ul class="service-bullets">
+              <li>Routine blood panels &amp; heart health screenings</li>
+              <li>School, college &amp; sports physical forms completed</li>
+              <li>Flu shots &amp; adult immunizations</li>
+            </ul>
+          </div>
+          <button class="service-cta" onclick="selectServiceAndScroll('New Patient Primary Care')">Book Primary Care Visit &rarr;</button>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon">&#10010;</div>
+              <span class="service-badge popular">Same-Day Appointments</span>
+            </div>
+            <h3>Urgent Care &amp; In-House X-Rays</h3>
+            <p>Fast evaluation for sudden illnesses, sprains, minor burns, and cuts—with digital X-rays and EKGs right inside our clinic.</p>
+            <ul class="service-bullets">
+              <li>On-site chest &amp; extremity X-rays without ER waits</li>
+              <li>Strep, flu, COVID-19 &amp; UTI rapid testing</li>
+              <li>Minor laceration repair (stitches) &amp; sprain care</li>
+            </ul>
+          </div>
+          <button class="service-cta" onclick="selectServiceAndScroll('Same-Day Urgent Care')">Request Same-Day Visit &rarr;</button>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon">&#128666;</div>
+              <span class="service-badge popular">FMCSA Certified</span>
+            </div>
+            <h3>DOT Commercial Driver Physicals</h3>
+            <p>Fast, certified Department of Transportation (DOT) medical exams minutes from I-85, I-285, and Hartsfield-Jackson Airport.</p>
+            <ul class="service-bullets">
+              <li>Same-day Medical Examiner's Certificate (MCSA-5876)</li>
+              <li>Convenient truck &amp; on-site parking available</li>
+              <li>Transparent self-pay pricing with no surprise fees</li>
+            </ul>
+          </div>
+          <button class="service-cta" onclick="selectServiceAndScroll('DOT Physical Exam')">Schedule DOT Physical &rarr;</button>
+        </div>
+
+        <div class="service-card reveal">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon">&#128196;</div>
+              <span class="service-badge">USCIS Civil Surgeon</span>
+            </div>
+            <h3>USCIS Immigration Medical Exams</h3>
+            <p>Complete Form I-693 green card medical examinations including required blood tests, TB screening, and vaccination review.</p>
+            <ul class="service-bullets">
+              <li>In-house lab work for faster Form I-693 turnaround</li>
+              <li>Sealed USCIS envelope provided upon completion</li>
+              <li>Multilingual support (English, Hindi, Gujarati)</li>
+            </ul>
+          </div>
+          <button class="service-cta" onclick="selectServiceAndScroll('USCIS Immigration Medical Exam')">Book Immigration Exam &rarr;</button>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon">&#9877;</div>
+              <span class="service-badge">Ongoing Care</span>
+            </div>
+            <h3>Diabetes, Blood Pressure &amp; Thyroid</h3>
+            <p>Steady, personalized management for chronic conditions so you stay energized and avoid preventable hospital visits.</p>
+            <ul class="service-bullets">
+              <li>In-house A1C, cholesterol &amp; kidney function labs</li>
+              <li>Clear medication reviews &amp; refill coordination</li>
+              <li>Remote patient monitoring options</li>
+            </ul>
+          </div>
+          <button class="service-cta" onclick="selectServiceAndScroll('Established Patient Follow-Up')">Book Follow-Up Visit &rarr;</button>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div>
+            <div class="service-card-top">
+              <div class="service-icon">&#9878;</div>
+              <span class="service-badge">Wellness</span>
+            </div>
+            <h3>Medical Weight Loss &amp; Sleep Health</h3>
+            <p>Doctor-guided weight management, metabolic lab evaluations, and sleep apnea assessments tailored to your lifestyle.</p>
+            <ul class="service-bullets">
+              <li>Safe, physician-monitored weight loss plans</li>
+              <li>Sleep disorder &amp; fatigue evaluations</li>
+              <li>Sustainable nutrition &amp; cardiac wellness</li>
+            </ul>
+          </div>
+          <button class="service-cta" onclick="selectServiceAndScroll('Weight Loss / Wellness Consultation')">Book Wellness Consultation &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Interactive 15-Second Visit Helper -->
+  <section id="triage" class="section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">15-Second Visit Helper</span>
+        <h2>Not Sure Which Appointment to Pick?</h2>
+        <p>Tap the option that best matches your visit today for instant preparation tips.</p>
+      </div>
+
+      <div class="triage-panel reveal">
+        <div class="triage-grid">
+          <button class="triage-btn" onclick="runTriage('routine', this)">
+            1. Annual Checkup or Refill
+            <span>Routine wellness, diabetes, blood pressure, or school physical</span>
+          </button>
+          <button class="triage-btn" onclick="runTriage('urgent', this)">
+            2. Sick Today or Minor Injury
+            <span>Fever, flu, sore throat, sprain, cut, or need an X-ray</span>
+          </button>
+          <button class="triage-btn" onclick="runTriage('exam', this)">
+            3. DOT or Immigration Exam
+            <span>Commercial driver certificate or USCIS Form I-693</span>
+          </button>
+          <button class="triage-btn" onclick="runTriage('emergency', this)">
+            4. Severe Chest Pain or Trouble Breathing
+            <span>Life-threatening or emergency warning symptoms</span>
+          </button>
+        </div>
+
+        <div id="triage-output" class="triage-result"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Cinematic Physician Spotlight -->
+<section id="doctor">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Meet Your Physician</span>
+      <h2>Experienced, Attentive Care in Atlanta</h2>
+      <p>Patients return to Dr. Daya because he listens carefully and explains every lab result in plain language.</p>
+    </div>
+
+    <div class="doctor-cinematic reveal">
+      <!-- Left Side: Doctor Photo -->
+      <div class="doctor-badge-box">
+        <img
+          src="https://mdxvitals-res.cloudinary.com/private_images/h_150,w_150,c_fill,g_face,f_auto,dpr_auto/professionals/1749218/photo.jpg"
+          alt="Dr. Shashikant A. Daya, MD"
+          class="doctor-spotlight-img"
+        >
+        <div style="font-size:1.25rem; font-weight:700;">Dr. Shashikant A. Daya, MD</div>
+        <div style="font-size:0.92rem; opacity:0.85; margin-top:4px;">Medical Director</div>
+      </div>
+
+      <!-- Right Side: Doctor Details -->
+      <div class="doctor-info">
+        <h3>Dr. Shashikant A. Daya, MD</h3>
+        <div class="doctor-role">Family Medicine &bull; Internal Medicine &bull; Nuclear Medicine</div>
+        <p style="font-size:1.06rem; color:rgba(255,255,255,0.9);">
+          Dr. Shashikant A. Daya has dedicated over two decades to caring for families, seniors, and airport professionals across Atlanta and East Point. His clinical approach combines thorough in-house diagnostics with practical, respectful guidance tailored to each patient's background and goals.
+        </p>
+
+        <div class="cred-grid">
+          <div class="cred-item">
+            <strong>Medical Education</strong>
+            University of the Witwatersrand
+          </div>
+          <div class="cred-item">
+            <strong>Residency Training</strong>
+            Louisiana State University (LSU)
+          </div>
+          <div class="cred-item">
+            <strong>Hospital Affiliations</strong>
+            Southern Regional Medical Center &amp; Piedmont Fayette Hospital
+          </div>
+          <div class="cred-item">
+            <strong>Languages Spoken</strong>
+            English, Hindi, Gujarati
+          </div>
+        </div>
+        
+        <!-- Additional CTA Button inside Doctor Profile -->
+        <div style="margin-top: 26px;">
+          <a href="#appointments" class="btn btn-lime">Book an Appointment with Dr. Daya</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- 9. Patient Care Experiences -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Patient Experiences</span>
+        <h2>Why Atlanta Patients Choose Our Clinic</h2>
+        <p>Real reasons families, seniors, and commercial drivers trust Airport Primary Care.</p>
+      </div>
+
+      <div class="stories-grid">
+        <div class="story-card reveal">
+          <div class="story-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="story-quote">"Getting my DOT physical right off I-85 saved my week. Easy parking, friendly front desk, and Dr. Daya walked me through my blood pressure numbers clearly."</p>
+          <div class="story-author">&mdash; Commercial Driver, East Point</div>
+        </div>
+
+        <div class="story-card reveal reveal-delay-1">
+          <div class="story-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="story-quote">"We brought my father in for an urgent cough and needed a chest X-ray. Having the X-ray and blood work done right inside the office kept us out of a crowded ER."</p>
+          <div class="story-author">&mdash; Local Family Patient, Atlanta</div>
+        </div>
+
+        <div class="story-card reveal reveal-delay-2">
+          <div class="story-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="story-quote">"Dr. Daya actually sits down and explains what every lab test means without rushing you. Being able to speak in our family's language made my parents feel completely at ease."</p>
+          <div class="story-author">&mdash; Primary Care Patient, College Park</div>
+        </div>
+      </div>
+      
+      <!-- After-stories CTA -->
+      <div style="text-align: center; margin-top: 45px;" class="reveal">
+        <a href="#appointments" class="btn btn-forest">Experience It Yourself - Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Bottom-of-Funnel Insurance & 3-Step Appointment Booking Hub -->
+  <section id="insurance">
+    <div class="container">
+      <div class="conversion-split">
+        <div class="reveal">
+          <span class="section-tag">Insurance &amp; Transparent Pricing</span>
+          <h2 style="font-size:2rem; margin-bottom:12px;">Accepted Insurance &amp; Self-Pay Options</h2>
+          <p style="font-size:1.05rem; color:var(--text-muted);">
+            We accept major health plans as well as straightforward self-pay rates for commercial drivers, and immigration physicals.
+          </p>
+
+          <div class="ins-pills">
+            <span class="ins-pill">Medicare</span>
+            <span class="ins-pill">Aetna</span>
+            <span class="ins-pill">UnitedHealthcare</span>
+            <span class="ins-pill">Anthem Blue Cross Blue Shield</span>
+            <span class="ins-pill">Self-Pay / Cash</span>
+            <span class="ins-pill">Credit / Debit / Apple Pay</span>
+          </div>
+
+          <div class="info-box">
+            <h4>Quick Insurance Verification</h4>
+            <p style="font-size:0.98rem; color:var(--text-muted);">
+              Have a question about your specific plan tier? Call our front desk at <strong>(404) 806-8181</strong> and our team will verify your coverage before you arrive.
+            </p>
+          </div>
+
+          <div class="info-box">
+            <h4>No Surprises Act &bull; Good Faith Estimate</h4>
+            <p style="font-size:0.98rem; color:var(--text-muted);">
+              Self-pay patients can request a written Good Faith Estimate of expected visit costs prior to scheduling any non-emergency service.
+            </p>
+          </div>
+
+          <div class="info-box" style="margin-bottom:0;">
+            <h4>Clinic Location &amp; Accessibility</h4>
+            <p style="font-size:0.98rem; color:var(--text-muted);">
+              <strong>3305 Bobby Brown Pkwy, Atlanta (East Point), GA 30344</strong><br>
+              Mon – Thu: 10:00 AM – 5:00 PM (Closed Fri–Sun)<br>
+              Wheelchair-accessible entrance, restroom &amp; free on-site parking.
+            </p>
+          </div>
+        </div>
+
+        <div id="appointments" class="booking-card reveal reveal-delay-1">
+          <span class="section-tag" style="margin-bottom:8px;">Takes Less Than 30 Seconds</span>
+          <h3>Request Your Appointment</h3>
+          <p class="booking-sub">Our front desk will contact you shortly to confirm your exact time slot.</p>
+
+          <div class="hipaa-banner">
+            <strong>HIPAA Privacy Notice:</strong> Please do not enter sensitive medical history or Social Security numbers below. We only need your contact info to schedule your visit.
+          </div>
+
+          <!-- The form now processes submission via javascript to open the email client -->
+          <form onsubmit="submitBooking(event)">
+            <div class="form-group">
+              <label for="visitType">1. What type of visit do you need? *</label>
+              <select id="visitType" required>
+                <option value="New Patient Primary Care">New Patient Primary Care / Check-Up</option>
+                <option value="Same-Day Urgent Care">Same-Day Urgent Care / X-Ray</option>
+                <option value="DOT Physical Exam">DOT Commercial Driver Physical</option>
+                <option value="USCIS Immigration Medical Exam">USCIS Immigration Medical Exam (I-693)</option>
+                <option value="Established Patient Follow-Up">Established Patient Follow-Up / Refill</option>
+                <option value="Weight Loss / Wellness Consultation">Weight Loss / Wellness Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="patientName">2. Your Full Name *</label>
+              <input type="text" id="patientName" required placeholder="e.g., Maria Garcia">
+            </div>
+
+            <div class="form-group">
+              <label for="patientPhone">3. Best Phone Number to Reach You *</label>
+              <input type="tel" id="patientPhone" required placeholder="(404) 555-0199">
+            </div>
+
+            <div class="form-group">
+              <label for="preferredDay">Preferred Day or Time (Mon–Thu, 10 AM – 5 PM)</label>
+              <input type="text" id="preferredDay" placeholder="e.g., Tomorrow morning or Thursday afternoon">
+            </div>
+
+            <button type="submit" class="btn btn-forest" style="width:100%; border-radius:12px; font-size:1.12rem;">
+              Confirm Appointment Request &rarr;
+            </button>
+          </form>
+
+          <div id="booking-confirm" class="booking-success"></div>
+
+          <p style="text-align:center; margin-top:16px; font-size:0.95rem; color:var(--text-muted);">
+            Need an immediate same-day spot? Call <a href="tel:4048068181" style="color:var(--primary); font-weight:700;">(404) 806-8181</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Interactive Patient FAQ Accordion -->
+  <section id="faq" class="section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Common Questions</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers before your visit to Airport Primary Care LLC.</p>
+      </div>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I need an appointment for urgent care or X-rays?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes—appointments are required for all visits. Same-day appointments are often available Monday through Thursday between 10:00 AM and 5:00 PM. You can submit a quick request above or call (404) 806-8181 so our team can prepare for your arrival.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What if I do not have health insurance?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            We welcome self-pay patients with clear, upfront pricing. Under the federal No Surprises Act, you can also request a written Good Faith Estimate of expected costs before any scheduled service.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What should I bring to my DOT or USCIS immigration physical?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Bring a valid government-issued photo ID (passport or driver's license), eyeglasses or hearing aids if you use them, a list of current medications, and any immunization records or CPAP/specialist clearance documents.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Which languages does Dr. Daya speak?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Dr. Shashikant A. Daya communicates with patients in English, Hindi, Gujarati, helping families and international travelers feel comfortable and understood.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Patient Preparation Guides -->
+  <section id="guides">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Prepare For Your Visit</span>
+        <h2>Patient Checklists &amp; Health Guides</h2>
+        <p>Bring the right paperwork the first time for a smooth, stress-free appointment.</p>
+      </div>
+
+      <div class="guides-grid">
+        <div class="guide-card reveal">
+          <div class="guide-tag">USCIS Form I-693</div>
+          <h3>Checklist: What to Bring to Your Immigration Exam</h3>
+          <p style="color:var(--text-muted);">Valid passport/ID, translated vaccination records, and prior medical documents so your sealed envelope isn't delayed.</p>
+          <a class="guide-link" onclick="openModal('blog1')">View Checklist &rarr;</a>
+        </div>
+
+        <div class="guide-card reveal reveal-delay-1">
+          <div class="guide-tag">FMCSA Drivers</div>
+          <h3>5 Tips to Pass Your DOT Physical Without Delays</h3>
+          <p style="color:var(--text-muted);">Simple steps on blood pressure, eyeglasses, CPAP reports, and medication lists before your commercial driver exam.</p>
+          <a class="guide-link" onclick="openModal('blog2')">Read 5 Tips &rarr;</a>
+        </div>
+
+        <div class="guide-card reveal reveal-delay-2">
+          <div class="guide-tag">Preventive Health</div>
+          <h3>Understanding Your Blood Pressure &amp; A1C Numbers</h3>
+          <p style="color:var(--text-muted);">Plain-English breakdown of healthy blood pressure and blood sugar targets to discuss with Dr. Daya.</p>
+          <a class="guide-link" onclick="openModal('blog3')">Read Guide &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Impact Bottom CTA Banner -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <h2>Ready to Take Control of Your Health?</h2>
+      <p>Book your appointment today. Our friendly staff is ready to help you get the care you deserve with upfront pricing and clear communication.</p>
+      <a href="#appointments" class="btn btn-lime" style="font-size: 1.15rem; padding: 18px 40px; color: var(--text-main);">Schedule Your Visit Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Airport Primary Care LLC</h4>
+        <p style="font-size:0.95rem; margin-bottom:10px;">Trusted primary care, in-house X-ray &amp; labs, and certified DOT/USCIS exams near Hartsfield-Jackson Atlanta Airport.</p>
+        <p style="font-size:0.95rem;"><strong>Address:</strong> 3305 Bobby Brown Pkwy, Atlanta, GA 30344</p>
+        <p style="font-size:0.95rem;"><strong>Phone:</strong> (404) 806-8181</p>
+      </div>
+      <div>
+        <h4>Clinic Hours</h4>
+        <ul>
+          <li>Monday: 10:00 AM – 5:00 PM</li>
+          <li>Tuesday: 10:00 AM – 5:00 PM</li>
+          <li>Wednesday: 10:00 AM – 5:00 PM</li>
+          <li>Thursday: 10:00 AM – 5:00 PM</li>
+          <li>Fri – Sun: Closed</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#journey">How Your Visit Works</a></li>
+          <li><a href="#services">Medical Services</a></li>
+          <li><a href="#triage">15-Second Visit Helper</a></li>
+          <li><a href="#doctor">Dr. Shashikant A. Daya, MD</a></li>
+          <li><a href="#appointments">Book Appointment</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Patient Privacy &amp; Legal</h4>
+        <ul>
+          <li><a onclick="openModal('hipaa')">HIPAA Notice of Privacy Practices</a></li>
+          <li><a onclick="openModal('privacy')">Website Privacy &amp; Cookie Policy</a></li>
+          <li><a onclick="openModal('disclaimer')">Medical &amp; Website Disclaimer</a></li>
+          <li><a onclick="openModal('ada')">Accessibility Statement (ADA)</a></li>
+          <li><a onclick="openModal('nsa')">No Surprises Act / Good Faith Estimate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Airport Primary Care LLC. All Rights Reserved. | 3305 Bobby Brown Pkwy, Atlanta, GA 30344</p>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile Conversion Bar -->
+  <div class="mobile-sticky-bar">
+    <a href="tel:4048068181" style="background:#eff6ff; color:var(--primary); border:1.5px solid var(--primary);">Call (404) 806-8181</a>
+    <a href="#appointments" style="background:var(--forest); color:#ffffff;">Book Visit</a>
+  </div>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal" onclick="closeModalOutside(event)">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+<script>
+  // 1. Cinematic Scroll Progress Bar, Header Elevation & Hero Parallax
+  const scrollProgress = document.getElementById('scrollProgress');
+  const mainHeader = document.getElementById('mainHeader');
+  const heroCanvas = document.getElementById('hero-canvas');
+  const heroContent = document.getElementById('heroContent');
+  let scrollOffset = 0;
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (scrollProgress) scrollProgress.style.width = progress + '%';
+    if (mainHeader) mainHeader.classList.toggle('scrolled', scrollTop > 30);
+
+    if (scrollTop < window.innerHeight * 1.2) {
+      scrollOffset = scrollTop;
+      if (heroCanvas) {
+        heroCanvas.style.transform = `translate3d(0, ${scrollTop * 0.22}px, 0)`;
+      }
+      if (heroContent) {
+        heroContent.style.transform = `translate3d(0, ${scrollTop * 0.08}px, 0)`;
+      }
+    }
+  }, { passive: true });
+
+  // 2. IntersectionObserver for Staggered Scroll Reveals & Count-Up Numbers
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+
+        entry.target.querySelectorAll('.count-up').forEach(counter => {
+          if (counter.dataset.animated) return;
+          counter.dataset.animated = 'true';
+          const target = parseInt(counter.dataset.target, 10);
+          const duration = 1200;
+          const startTime = performance.now();
+
+          function updateCount(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(updateCount);
+          }
+          requestAnimationFrame(updateCount);
+        });
+
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // 3. Organic DNA Particle Artwork
+  (function initHeroArt() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width, height, particles = [];
+
+    function resize() {
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+      createParticles();
+    }
+
+    function createParticles() {
+      particles = [];
+      const count = Math.min(850, Math.floor((width * height) / 1450));
+      for (let i = 0; i < count; i++) {
+        const t = (i / count) * Math.PI * 4.2;
+        const strand = i % 2 === 0 ? 1 : -1;
+        particles.push({
+          t: t,
+          strand: strand,
+          spreadX: (Math.random() - 0.5) * 65,
+          spreadY: (Math.random() - 0.5) * 65,
+          size: Math.random() * 2.5 + 0.8,
+          alpha: Math.random() * 0.45 + 0.15,
+          hue: Math.random() > 0.35 ? '#1f634e' : '#85ab98'
+        });
+      }
+    }
+
+    let phase = 0;
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+      const centerX = width * 0.78;
+      const amplitude = Math.min(185, width * 0.16);
+      const scrollTwist = scrollOffset * 0.0025;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        const yNorm = p.t / (Math.PI * 4.2);
+        const y = yNorm * (height + 120) - 60;
+        const wave = Math.sin(p.t + phase + scrollTwist) * amplitude * p.strand;
+        const diagonalShift = (0.5 - yNorm) * (width * 0.14);
+        const x = centerX + wave + diagonalShift + p.spreadX;
+
+        ctx.beginPath();
+        ctx.arc(x, y + p.spreadY * 0.5, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.hue;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      phase += 0.0038;
+      requestAnimationFrame(render);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    render();
+  })();
+
+  // 4. Funnel Service Routing
+  function selectServiceAndScroll(serviceValue) {
+    const select = document.getElementById('visitType');
+    if (select) select.value = serviceValue;
+    const bookingSection = document.getElementById('appointments');
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const nameInput = document.getElementById('patientName');
+        if (nameInput) nameInput.focus();
+      }, 550);
+    }
+  }
+
+  // 5. Interactive Triage Helper
+  function runTriage(type, btnEl) {
+    document.querySelectorAll('.triage-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+
+    const out = document.getElementById('triage-output');
+    out.style.display = 'block';
+    out.style.background = '#e8f1ed';
+    out.style.borderLeftColor = '#164b3b';
+    out.style.color = '#10201a';
+
+    if (type === 'routine') {
+      out.innerHTML = `
+        <strong>Recommended: Scheduled Primary Care Visit</strong><br>
+        Bring your photo ID, insurance card (if insured), and current medications. Ask our staff when we call if fasting is needed for blood work.<br>
+        <button class="btn btn-forest" style="margin-top:14px; padding:11px 22px; min-height:44px;" onclick="selectServiceAndScroll('New Patient Primary Care')">Book Primary Care Visit &rarr;</button>
+      `;
+    } else if (type === 'urgent') {
+      out.innerHTML = `
+        <strong>Recommended: Same-Day Urgent Care / In-House X-Ray</strong><br>
+        Schedule your visit Mon–Thu (10:00 AM – 5:00 PM). On-site X-rays, EKGs, and rapid strep/flu/COVID testing are ready.<br>
+        <button class="btn btn-forest" style="margin-top:14px; padding:11px 22px; min-height:44px;" onclick="selectServiceAndScroll('Same-Day Urgent Care')">Request Same-Day Visit &rarr;</button>
+      `;
+    } else if (type === 'exam') {
+      out.innerHTML = `
+        <strong>Recommended: Certified DOT or USCIS Exam</strong><br>
+        Bring valid government photo ID, eyeglasses/hearing aids if used, and any vaccination records or CPAP compliance reports.<br>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+          <button class="btn btn-forest" style="padding:11px 20px; min-height:44px;" onclick="selectServiceAndScroll('DOT Physical Exam')">Book DOT Physical &rarr;</button>
+          <button class="btn btn-outline" style="padding:11px 20px; min-height:44px;" onclick="selectServiceAndScroll('USCIS Immigration Medical Exam')">Book USCIS Exam &rarr;</button>
+        </div>
+      `;
+    } else if (type === 'emergency') {
+      out.style.background = '#fee2e2';
+      out.style.borderLeftColor = '#dc2626';
+      out.style.color = '#991b1b';
+      out.innerHTML = `
+        <strong>EMERGENCY ALERT: Call 911 Immediately</strong><br>
+        Do not wait for a clinic visit. Call 911 or go straight to the nearest hospital emergency room right away.
+      `;
+    }
+  }
+
+  // 6. FAQ Accordion Toggle
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // 7. Appointment Form Submission integrated with MailTo link
+  function submitBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('patientName').value;
+    const phone = document.getElementById('patientPhone').value;
+    const visit = document.getElementById('visitType').value;
+    const preferredDay = document.getElementById('preferredDay').value;
+    
+    // Construct the email recipient, subject and body
+    const emailTo = "ashwani@yogesher.com";
+    const subject = encodeURIComponent("New Appointment Request: " + visit);
+    const body = encodeURIComponent(
+      "Hello,\n\n" +
+      "You have received a new appointment request from the website.\n\n" +
+      "Patient Name: " + name + "\n" +
+      "Phone Number: " + phone + "\n" +
+      "Requested Visit Type: " + visit + "\n" +
+      "Preferred Day/Time: " + preferredDay + "\n\n" +
+      "Please call the patient back to confirm their schedule.\n"
+    );
+
+    // Open user's email client
+    window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+
+    const confirmBox = document.getElementById('booking-confirm');
+    confirmBox.style.display = 'block';
+    confirmBox.innerHTML = `
+      <strong>Request Prepared, ${name}!</strong><br>
+      Your email client has been opened to send your request for a <strong>${visit}</strong> to our front desk.<br>
+      <span style="font-size:0.92rem;">Need immediate same-day help? Call us directly at <a href="tel:4048068181" style="color:#0f4c81; font-weight:700;">(404) 806-8181</a>.</span>
+    `;
+  }
+
+  // 8. Legal & Checklist Modals
+  const modalData = {
+    hipaa: `<h3>HIPAA Notice of Privacy Practices</h3><p><strong>Effective Date:</strong> January 1, 2026 | <strong>Entity:</strong> Airport Primary Care LLC</p><p>Airport Primary Care LLC is required by federal law (HIPAA) to maintain the privacy and security of your Protected Health Information (PHI) and provide notice of our legal duties and privacy practices.</p>`,
+    privacy: `<h3>Website Privacy &amp; Cookie Policy</h3><p>We only collect personal contact information (name, phone number, preferred visit type) that you voluntarily enter in our appointment request form. We never sell or share visitor contact details with third-party advertisers.</p>`,
+    disclaimer: `<h3>Medical &amp; Website Disclaimer</h3><p>Information on this website is for general educational purposes only and does not establish a doctor-patient relationship. If you are experiencing a medical emergency, call 911 immediately.</p>`,
+    ada: `<h3>Website &amp; Clinic Accessibility (ADA)</h3><p>Our facility at 3305 Bobby Brown Pkwy features wheelchair-accessible entrances, restrooms, and parking. For scheduling assistance or accessibility accommodations, please call <strong>(404) 806-8181</strong>.</p>`,
+    nsa: `<h3>No Surprises Act &amp; Good Faith Estimate</h3><p>Under federal law, self-pay patients have the right to receive a written Good Faith Estimate of expected charges at least 1 business day before scheduled non-emergency services.</p>`,
+    blog1: `<h3>Checklist: What to Bring to Your USCIS Immigration Exam (Form I-693)</h3><ul><li><strong>Valid Government Photo ID:</strong> Current passport, driver's license, or travel document.</li><li><strong>Vaccination Records:</strong> Official immunization history translated into English (MMR, Tdap, Varicella, Hepatitis B, Influenza, etc.).</li><li><strong>Prior Medical Records:</strong> Any documentation of past TB skin/blood tests or chest X-rays.</li></ul>`,
+    blog2: `<h3>5 Tips to Pass Your FMCSA DOT Physical Without Delays</h3><ul><li><strong>1. Bring Glasses or Hearing Aids:</strong> Bring corrective lenses or hearing devices you use while driving.</li><li><strong>2. Take Regular Medications:</strong> Do not skip blood pressure or diabetes medication on exam day.</li><li><strong>3. Skip Energy Drinks &amp; Heavy Caffeine:</strong> Excess caffeine right before your exam can temporarily spike blood pressure.</li><li><strong>4. Bring a Complete Medication List:</strong> Include dosages and prescribing physicians.</li><li><strong>5. Bring Specialist Clearance:</strong> If you use a CPAP machine or have a cardiac history, bring recent compliance reports.</li></ul>`,
+    blog3: `<h3>Understanding Your Blood Pressure &amp; A1C Numbers</h3><ul><li><strong>Blood Pressure:</strong> Normal readings are generally below 120/80 mmHg.</li><li><strong>Hemoglobin A1C:</strong> Measures 2–3 month average blood sugar. Below 5.7% is normal; 5.7%–6.4% indicates prediabetes; 6.5% or higher indicates diabetes.</li></ul>`
+  };
+
+  function openModal(key) {
+    document.getElementById('modalBody').innerHTML = modalData[key];
+    document.getElementById('infoModal').style.display = 'block';
+  }
+  function closeModal() {
+    document.getElementById('infoModal').style.display = 'none';
+  }
+  function closeModalOutside(e) {
+    if (e.target.id === 'infoModal') closeModal();
+  }
+</script>
+
+</body>
+</html>
